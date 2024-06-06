@@ -10,7 +10,6 @@
               <xsi:element name="Price" type="xsi:decimal"/>
               <xsi:element name="Category" type="xsi:string"/>
               <xsi:element name="Brand" type="xsi:string"/>
-              <xsi:element name="Color" type="xsi:string"/>
               <xsi:element name="Rating_Count" type="xsi:int"/>
               <xsi:element name="Inventory_Count" type="xsi:int"/>
             </xsi:sequence>
