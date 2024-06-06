@@ -8,4 +8,12 @@
     <Rating_Count>8</Rating_Count>
     <Inventory_Count>21</Inventory_Count>
   </Product>
+  <Product id="product7632">
+    <Name>Pillow</Name>
+    <Price>99.99</Price>
+    <Category>Home Decor</Category>
+    <Brand>FabDecor</Brand>
+    <Rating_Count>2</Rating_Count>
+    <Inventory_Count>100</Inventory_Count>
+  </Product>
 </Products>

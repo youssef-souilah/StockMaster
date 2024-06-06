@@ -20,6 +20,10 @@ app.get('/categories.xml', (req, res) => {
     res.sendFile(__dirname + '/data/categories.xml');
 });
 
+app.get('/populaires.xslt', (req, res) => {
+    res.sendFile(__dirname + '/data/xslt/populaires.xslt');
+});
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });

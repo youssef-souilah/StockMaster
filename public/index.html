@@ -28,21 +28,22 @@
         <div id="products-tabs">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Tous</a>
+                    <a class="nav-link active" id="index" aria-current="page" href="/">Tous</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="/">Populaires</a>
+                    <a class="nav-link " id="populaires" aria-current="page" href="?tab=populaires">Populaires</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="/">Prix ​​élevé</a>
+                    <a class="nav-link " id="prixeleve" aria-current="page" href="?tab=prixeleve">Prix ​​élevé</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="/">Bas prix</a>
+                    <a class="nav-link " id="basprix" aria-current="page" href="?tab=basprix">Bas prix</a>
                 </li>
             </ul>
         </div>
-        <div class=" overflow-y-scroll" style="max-height : 300px;">
-            <table class="table">
+            
+        <div id="table"  class=" overflow-y-scroll" style="max-height : 300px;">
+            <table class="table" >
                 <thead>
                     <tr>
                         <th scope="col">Product ID</th>
@@ -77,8 +78,6 @@
                     <!-- Additional product entries -->
                 </tbody>
             </table>
-            
-            
         </div>
         
     </div>

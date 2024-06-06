@@ -37,6 +37,45 @@ function drowTable(xmlData){
 
 }
 
+function displayResult(tab) {
+    try {
+        updateActiveTap(tab);
+        var xmlContent = ''; 
+        var xsltContent = ''; 
+        fetchXMLData('/products.xml', function (content) {
+            xmlContent = content;
+            fetchXMLData(`/${tab}.xslt`, function (content) {
+                xsltContent = content;
+                var parser = new DOMParser();
+                var xml = parser.parseFromString(xmlContent, 'text/xml');
+                var xslt = parser.parseFromString(xsltContent, 'text/xml');
+                var xsltProcessor = new XSLTProcessor();
+                xsltProcessor.importStylesheet(xslt);
+                var resultDocument = xsltProcessor.transformToFragment(xml, document);
+                document.getElementById('table').innerHTML="";
+                document.getElementById('table').appendChild(resultDocument);
+            });
+        });
+    } catch (error) {
+        alert("une erreur occures !")
+        console.error('Error:', error);
+    }
+}
+
+function updateActiveTap(tap){
+    document.querySelectorAll('.nav-link').forEach((item)=>{
+        item.classList.remove('active');
+    });
+    document.getElementById(tap).classList.add('active');
+}
+
+function handleTabChange() {
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('tab') && (urlParams.get('tab') == 'populaires'||urlParams.get('tab') == 'prixeleve'||urlParams.get('tab') == 'basprix')) {
+        displayResult(urlParams.get('tab'));
+    }
+}
+
 function fetchXMLData(url, callback) {
     fetch(url)
         .then(response => response.text())
@@ -47,4 +86,6 @@ document.addEventListener("DOMContentLoaded", function() {
     fetchXMLData('/products.xml', function(xmlData) {
         drowTable(xmlData)
     });
+    
+    handleTabChange();
 });
