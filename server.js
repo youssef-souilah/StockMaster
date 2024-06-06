@@ -12,6 +12,14 @@ app.get('/', (req, res) => {
 });
 
 
+
+app.get('/products.xml', (req, res) => {
+    res.sendFile(__dirname + '/data/products.xml');
+});
+app.get('/categories.xml', (req, res) => {
+    res.sendFile(__dirname + '/data/categories.xml');
+});
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });

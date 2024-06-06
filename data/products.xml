@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="products.xsd">
-  <Product id="product7631"> <!-- Corrected id attribute value -->
+  <Product id="product7631">
     <Name>On Cloud Nine Pillow</Name>
     <Price>24.99</Price>
     <Category>Home Decor</Category>
