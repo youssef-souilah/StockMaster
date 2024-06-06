@@ -23,6 +23,12 @@ app.get('/categories.xml', (req, res) => {
 app.get('/populaires.xslt', (req, res) => {
     res.sendFile(__dirname + '/data/xslt/populaires.xslt');
 });
+app.get('/prixeleve.xslt', (req, res) => {
+    res.sendFile(__dirname + '/data/xslt/prixeleve.xslt');
+});
+app.get('/basprix.xslt', (req, res) => {
+    res.sendFile(__dirname + '/data/xslt/basprix.xslt');
+});
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
