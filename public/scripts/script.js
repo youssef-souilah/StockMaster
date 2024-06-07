@@ -63,31 +63,28 @@ function displayResult(tab) {
 }
 
 function editProduct(productId) {
-    // Fetch product data (this example assumes you have a function or a way to get the product data)
-    // Fill the form fields with the product data
-    let product={
-        id:"f",
-        Name:"",
-        Price:"",
-        Category:"",
-        Brand:"",
-        Rating_Count:"",
-        Inventory_Count:"",
-    }
-    document.getElementById('ProductModalLabel').textContent="Modifier le produit";
-    document.getElementById('ProductModalAction').textContent="Modifier";
-    document.getElementById('ProductModalAction').onclick= saveProduct;
-    document.getElementById('product-id').value = product.id;
-    document.getElementById('product-name').value = product.Name;
-    document.getElementById('product-price').value = product.Price;
-    document.getElementById('product-category').value = product.Category;
-    document.getElementById('product-brand').value = product.Brand;
-    document.getElementById('product-rating-count').value = product.Rating_Count;
-    document.getElementById('product-inventory-count').value = product.Inventory_Count;
+    fetch('/products/'+productId)
+        .then((res)=>res.json())
+        .then((res)=>{
+            document.getElementById('ProductModalLabel').textContent="Modifier le produit";
+            document.getElementById('ProductModalAction').textContent="Modifier";
+            document.getElementById('ProductModalAction').onclick= saveProduct;
+            document.getElementById('product-id').value = res.data.$.id;
+            document.getElementById('product-name').value = res.data.Name[0];
+            document.getElementById('product-price').value = res.data.Price[0];
+            document.getElementById('product-category').value = res.data.Category[0];
+            document.getElementById('product-brand').value = res.data.Brand[0];
+            document.getElementById('product-rating-count').value = res.data.Rating_Count[0];
+            document.getElementById('product-inventory-count').value = res.data.Inventory_Count[0];
 
-    // Show the modal
-    var editProductModal = new bootstrap.Modal(document.getElementById('ProductModal'));
-    editProductModal.show();
+            // Show the modal
+            var editProductModal = new bootstrap.Modal(document.getElementById('ProductModal'));
+                editProductModal.show();
+        })
+        .catch((e)=>{
+            alert(e.message)
+            console.log(e);
+        });
 }
 
 function saveProduct() {
@@ -109,6 +106,14 @@ function saveProduct() {
     var editProductModal = bootstrap.Modal.getInstance(document.getElementById('editProductModal'));
     editProductModal.hide();
 }
+
+function resetModal(){
+    document.getElementById('ProductModalLabel').textContent="Ajouter un Nouveau Produit";
+    document.getElementById('ProductModalAction').textContent="Ajouter";
+    document.getElementById('ProductModalAction').onclick= saveProduct;
+    document.getElementById('ProductForm').reset();
+}
+
 
 function updateActiveTap(tap){
     document.querySelectorAll('.nav-link').forEach((item)=>{
@@ -141,10 +146,13 @@ async function deleteProduct(id){
 
 function fetchXMLData(url, callback) {
     fetch(url)
-        .then(response => response.text())
-        .then(xmlData => callback(xmlData))
-        .catch(error => console.error('Error fetching XML:', error));
+    .then(response => response.text())
+    .then(xmlData => callback(xmlData))
+    .catch(error => console.error('Error fetching XML:', error));
 }
+document.getElementById('ProductModal').addEventListener('hide.bs.modal', function () {
+    resetModal()
+});
 document.addEventListener("DOMContentLoaded", function() {
     fetchXMLData('/products.xml', function(xmlData) {
         drowTable(xmlData)
