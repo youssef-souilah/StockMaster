@@ -7,8 +7,8 @@ const port = 3000;
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var indexRouter = require("./routes/index");    
 var productRouter = require("./routes/product");    
+var categoryRouter = require("./routes/category");    
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
@@ -30,6 +30,7 @@ app.get('/basprix.xslt', (req, res) => {
     res.sendFile(__dirname + '/data/xslt/basprix.xslt');
 });
 app.use("/products", productRouter);
+app.use("/categories", categoryRouter);
 
 
 
