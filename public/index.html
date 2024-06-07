@@ -21,7 +21,7 @@
     <div class="container mt-5">
         <div class="d-flex flex-row justify-content-between">
             <h1>Stock</h1>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProductModal">
                 Ajouter
             </button>
         </div>
@@ -41,9 +41,9 @@
                 </li>
             </ul>
         </div>
-            
-        <div id="table"  class=" overflow-y-scroll" style="max-height : 300px;">
-            <table class="table" >
+
+        <div id="table" class=" overflow-y-scroll" style="max-height : 300px;">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Product ID</th>
@@ -57,44 +57,80 @@
                     </tr>
                 </thead>
                 <tbody id="productTableBody">
-                    
+
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 
 
     <!-- Button trigger modal -->
-    
+
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal modal-lg fade" id="ProductModal" tabindex="-1" aria-labelledby="addProductLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="ProductModalLabel">Ajouter un Nouveau Produit</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                 </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                <div class="modal-body">
+                    <form id="addProductForm">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="product-id" class="col-form-label">ID du Produit:</label>
+                                <input type="text" class="form-control" id="product-id">
+                            </div>
+                            <div class="col">
+                                <label for="product-name" class="col-form-label">Nom:</label>
+                                <input type="text" class="form-control" id="product-name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="product-price" class="col-form-label">Prix:</label>
+                                <input type="number" class="form-control" id="product-price" step="0.01">
+                            </div>
+                            <div class="col">
+                                <label for="product-category" class="col-form-label">Catégorie:</label>
+                                <select class="form-select" id="product-category">
+                                    <option value="Category 1">Catégorie 1</option>
+                                    <option value="Category 2">Catégorie 2</option>
+                                    <option value="Category 3">Catégorie 3</option>
+                                    <!-- Add more categories as needed -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="product-brand" class="col-form-label">Marque:</label>
+                                <input type="text" class="form-control" id="product-brand">
+                            </div>
+                            <div class="col">
+                                <label for="product-rating-count" class="col-form-label">Nombre de Notes:</label>
+                                <input type="number" class="form-control" id="product-rating-count">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="product-inventory-count" class="col-form-label">Quantité en Stock:</label>
+                                <input type="number" class="form-control" id="product-inventory-count">
+                            </div>
+                        </div>
+                    </form>
                 </div>
-              </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" id="ProductModalAction" >Ajouter</button>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+    
+    
+    
 
 
 
