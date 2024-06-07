@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="products.xsd">
   <Product id="product7631">
     <Name>On Cloud Nine Pillow</Name>
@@ -9,11 +9,11 @@
     <Inventory_Count>21</Inventory_Count>
   </Product>
   <Product id="product7632">
-    <Name>Pillow</Name>
-    <Price>99.99</Price>
+    <Name> Nine Pillow</Name>
+    <Price>1000.99</Price>
     <Category>Home Decor</Category>
     <Brand>FabDecor</Brand>
-    <Rating_Count>2</Rating_Count>
-    <Inventory_Count>100</Inventory_Count>
+    <Rating_Count>8</Rating_Count>
+    <Inventory_Count>21</Inventory_Count>
   </Product>
 </Products>

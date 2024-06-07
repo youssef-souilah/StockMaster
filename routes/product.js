@@ -2,14 +2,16 @@ const express = require("express");
 const router = express.Router();
 const xml2js = require('xml2js');
 const fs = require('fs');
+const path = require("path");
 router.delete('/delete/:id', (req, res) => {
-    fs.readFile('../data/products.xml', (err, data) => {
+    const filePath = path.join(__dirname, '../data/products.xml');
+    fs.readFile(filePath, (err, data) => {
         if (err) res.status(500).json({
-            message:"une erreur se produit !"
+            message:"une erreur se produit ! (file notfound)"
         });
         xml2js.parseString(data, (err, result) => {
             if (err) res.status(500).json({
-                message:"une erreur se produit !"
+                message:"une erreur se produit ! (file reader)"
             });
             
             const id=req.params.id
@@ -27,12 +29,12 @@ router.delete('/delete/:id', (req, res) => {
             const builder = new xml2js.Builder();
             const xml = builder.buildObject(result);
 
-            fs.writeFile('../data/products.xml', xml, (err) => {
+            fs.writeFile(filePath, xml, (err) => {
                 if (err) res.status(500).json({
-                    message:"une erreur se produit !"
+                    message:"une erreur se produit ! (file writer)"
                 });
                 res.status(200).json({
-                    message:"produit créé avec succès"
+                    message:"produit supprimé avec succès"
                 });
             });
         });

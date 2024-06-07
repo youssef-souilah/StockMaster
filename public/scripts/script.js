@@ -79,13 +79,14 @@ async function deleteProduct(id){
     await fetch(`/products/delete/${id}`,{
         method:"Delete",
     })
+    .then((res)=>res.json())
     .then((res)=>{
-        console.log(res.json())
+        alert(res.message);
+        window.location.href="/"
     })
     .catch((e)=>{
-        console.error(e)
+        alert(e.message);
     })
-
 }
 
 function fetchXMLData(url, callback) {
