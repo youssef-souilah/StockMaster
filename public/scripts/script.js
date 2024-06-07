@@ -23,10 +23,10 @@ function drowTable(xmlData){
         tableBody += `<td>${ratingCount}</td>`;
         tableBody += `<td>${InventoryCount}</td>`;
         tableBody += `<td>
-            <button onclick="editProduct(${productId})" class="text-blue border-0 bg-transparent" >
+            <button onclick="editProduct('${productId}')" class="text-blue border-0 bg-transparent" >
                 <img src="/icons/pencil.svg" alt="SVG Image" >
             </button>
-            <button onclick="deleteProduct(${productId})" class="text-red border-0 bg-transparent" >
+            <button onclick="deleteProduct('${productId}')" class="text-red border-0 bg-transparent" >
                 <img src="/icons/trash.svg" alt="SVG Image">
             </button>
         </td>`;
@@ -74,6 +74,18 @@ function handleTabChange() {
     if (urlParams.has('tab') && (urlParams.get('tab') == 'populaires'||urlParams.get('tab') == 'prixeleve'||urlParams.get('tab') == 'basprix')) {
         displayResult(urlParams.get('tab'));
     }
+}
+async function deleteProduct(id){
+    await fetch(`/products/delete/${id}`,{
+        method:"Delete",
+    })
+    .then((res)=>{
+        console.log(res.json())
+    })
+    .catch((e)=>{
+        console.error(e)
+    })
+
 }
 
 function fetchXMLData(url, callback) {

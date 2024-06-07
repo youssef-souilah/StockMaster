@@ -4,11 +4,20 @@ const xml2js = require('xml2js');
 const fs = require('fs');
 router.delete('/delete/:id', (req, res) => {
     fs.readFile('../data/products.xml', (err, data) => {
-        if (err) throw err;
-
+        if (err) res.status(500).json({
+            message:"une erreur se produit !"
+        });
         xml2js.parseString(data, (err, result) => {
-            if (err) throw err;
+            if (err) res.status(500).json({
+                message:"une erreur se produit !"
+            });
+            
             const id=req.params.id
+            if(id==null){
+                res.status(400).json({
+                    message:"paramètre manquant !"
+                });
+            }
             let products = result.Products.Product;
 
             products = products.filter(product => product.$.id != id);
@@ -19,8 +28,12 @@ router.delete('/delete/:id', (req, res) => {
             const xml = builder.buildObject(result);
 
             fs.writeFile('../data/products.xml', xml, (err) => {
-                if (err) throw err;
-                res.redirect('/');
+                if (err) res.status(500).json({
+                    message:"une erreur se produit !"
+                });
+                res.status(200).json({
+                    message:"produit créé avec succès"
+                });
             });
         });
     });

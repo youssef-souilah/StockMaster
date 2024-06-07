@@ -29,10 +29,10 @@
             <td><xsl:value-of select="Rating_Count"/></td>
             <td><xsl:value-of select="Inventory_Count"/></td>
             <td>
-                <button onclick="editProduct({$productId})" class="text-blue border-0 bg-transparent" >
+                <button onclick="editProduct('{$productId}')" class="text-blue border-0 bg-transparent" >
                     <img src="/icons/pencil.svg" alt="Edit" />
                 </button>
-                <button onclick="deleteProduct({$productId})" class="text-red border-0 bg-transparent" >
+                <button onclick="deleteProduct('{$productId}')" class="text-red border-0 bg-transparent" >
                     <img src="/icons/trash.svg" alt="Delete" />
                 </button>
             </td>
