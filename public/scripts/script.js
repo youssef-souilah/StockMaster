@@ -76,17 +76,19 @@ function handleTabChange() {
     }
 }
 async function deleteProduct(id){
-    await fetch(`/products/delete/${id}`,{
-        method:"Delete",
-    })
-    .then((res)=>res.json())
-    .then((res)=>{
-        alert(res.message);
-        window.location.href="/"
-    })
-    .catch((e)=>{
-        alert(e.message);
-    })
+    if (confirm('êtes-vous sûr de vouloir supprimer ce produit !')){
+        await fetch(`/products/delete/${id}`,{
+            method:"Delete",
+        })
+        .then((res)=>res.json())
+        .then((res)=>{
+            alert(res.message);
+            window.location.href="/"
+        })
+        .catch((e)=>{
+            alert(e.message);
+        })
+    }
 }
 
 function fetchXMLData(url, callback) {
