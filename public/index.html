@@ -42,7 +42,7 @@
             </ul>
         </div>
 
-        <div id="table" class=" overflow-y-scroll" style="max-height : 300px;">
+        <div id="table" class=" overflow-y-scroll" style="max-height : 400px;">
             <table class="table">
                 <thead>
                     <tr>
@@ -63,12 +63,29 @@
         </div>
 
     </div>
+    <div class="container mt-5">
+        <div class="d-flex flex-row justify-content-between">
+            <h1>Les Catégories</h1>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ProductModal">
+                Ajouter
+            </button>
+        </div>
+        <div id="Categories" class="d-flex flex-row gap-2 flex-items-center overflow-x-scroll" >
+            <div class="card p-2" style="max-width: 300px; min-width: 200px;">
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <h5 class="card-title">Electronics</h5>
+                    <a href="/products/category/electronics" class="btn btn-primary">voir Produits</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-    <!-- Button trigger modal -->
+    
 
 
-    <!-- Modal -->
+    <!-- Product Modal -->
     <div class="modal modal-lg fade" id="ProductModal" tabindex="-1" aria-labelledby="addProductLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
