@@ -267,9 +267,7 @@ async function listCategories(data){
                         <h5 class="card-title my-5 text-center">${item.Name[0]}</h5>
                         <div style="display: flex;align-items: center;justify-content: space-between;">
                             <a href="/products/category/${item.Name[0]}" class="btn btn-primary">voir Produits</a>
-                            <button onclick="deleteCategory('${item.Name[0]}')" class="text-red border-0 bg-transparent" >
-                                <img src="/icons/trash.svg" alt="SVG Image">
-                            </button>
+                            <div></div>
                         </div>
                     </div>
                 </div>
