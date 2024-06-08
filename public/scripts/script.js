@@ -1,5 +1,5 @@
 
-
+let selectedUpdatedProduct;
 function drowTable(xmlData){
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlData, 'text/xml');
@@ -63,6 +63,7 @@ function displayResult(tab) {
 }
 
 function editProduct(productId) {
+    selectedUpdatedProduct=productId;
     fetch('/products/'+productId)
         .then((res)=>res.json())
         .then((res)=>{
@@ -161,9 +162,34 @@ async function addProduct(product){
         window.location.href="/"
     })
 }
-function updateProduct(){
-    alert("update product")
+async function updateProduct(product){
+    const newProduct= {
+        $: { id:product.id },
+        Name: [product.Name],
+        Price: [product.Price],
+        Category: [product.Category],
+        Brand: [product.Brand],
+        Rating_Count: [product.Rating_Count],
+        Inventory_Count: [product.Inventory_Count]
+    };
+    await fetch("/products/"+selectedUpdatedProduct,{
+        method:"Put",
+        body:JSON.stringify(newProduct),
+        headers: {
+            "Content-Type": "application/json"
+        },  
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+        alert(res.message)
+        window.location.href="/"
+    })
+    .catch((e)=>{
+        alert(e.message)
+        window.location.href="/"
+    })
 }
+
 function resetModal(){
     document.getElementById('ProductModalLabel').textContent="Ajouter un Nouveau Produit";
     document.getElementById('ProductModalAction').textContent="Ajouter";

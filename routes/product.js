@@ -72,7 +72,6 @@ router.get('/:id', (req, res) => {
 router.post('/', async(req, res) => {
     try{
         let newProduct = req.body;
-        console.log(newProduct)
         const filePath = path.join(__dirname, '../data/products.xml');
         fs.readFile(filePath, (err, data) => {
             if (err) res.status(500).json({
@@ -106,7 +105,50 @@ router.post('/', async(req, res) => {
         });
     }
     catch(e){
-        res.status(500).json({ message: 'produit créé avec succès', error });
+        res.status(500).json({ message: 'une erreur se produit !', error });
+    }
+    
+});
+router.put('/:id', async(req, res) => {
+    try{
+        let updatedProduct = req.body;
+        const id=req.params.id
+        if(id==null){
+            return res.status(400).json({
+                message:"paramètre manquant !"
+            });
+        }
+        const filePath = path.join(__dirname, '../data/products.xml');
+        fs.readFile(filePath, (err, data) => {
+            if (err) res.status(500).json({
+                message:"une erreur se produit !"
+            });
+            xml2js.parseString(data, (err, result) => {
+                if (err) res.status(500).json({
+                    message:"une erreur se produit !"
+                });
+                let products = result.Products.Product||[];
+                const productIndex = products.findIndex(product => product.$.id === id);
+                if (productIndex === -1) {
+                    return res.status(404).json({ message: "le produit n'existe pas !" });
+                }
+                products[productIndex] = updatedProduct;
+                result.Products.Product = products;
+                const builder = new xml2js.Builder();
+                const xml = builder.buildObject(result);
+                fs.writeFile(filePath, xml, (err) => {
+                    if (err) res.status(500).json({
+                        message:"une erreur se produit !"
+                    });
+                    res.status(200).json({
+                        message:"produit modifiée avec succès"
+                    });
+                });
+            });
+        });
+    }
+    catch(e){
+        res.status(500).json({ message: 'une erreur se produit !', error });
     }
     
 });
