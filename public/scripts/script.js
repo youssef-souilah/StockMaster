@@ -1,7 +1,4 @@
-document.getElementById('ProductModalAction').addEventListener('click',(e)=>{
-    e.preventDefault();
-    saveProduct()
-})
+
 
 function drowTable(xmlData){
     const parser = new DOMParser();
@@ -90,7 +87,6 @@ function editProduct(productId) {
 }
 
 function saveProduct() {
-    // Get the updated product data from the form
     const product = {
         id: document.getElementById('product-id').value,
         Name: document.getElementById('product-name').value,
@@ -100,16 +96,46 @@ function saveProduct() {
         Rating_Count: document.getElementById('product-rating-count').value,
         Inventory_Count: document.getElementById('product-inventory-count').value,
     };
+    if(validateProductForm(product)){
+        // saveProductData(updatedProduct);
+        console.log(product)
+        var editProductModal = bootstrap.Modal.getInstance(document.getElementById('ProductModal'));
+        editProductModal.hide();
+    }
+    
 
-    // Save the updated product (this example assumes you have a function or a way to save the product data)
-    // saveProductData(updatedProduct);
-    console.log(product)
-
-    // Hide the modal
-    var editProductModal = bootstrap.Modal.getInstance(document.getElementById('ProductModal'));
-    editProductModal.hide();
+    
 }
 
+function validateProductForm({id,Name,Price,Category,Brand,Rating_Count,Inventory_Count}) {
+    console.log("called")
+
+    if (id=="" || Name=="" || Price=="" || Category=="" || Brand=="" || Rating_Count=="" || Inventory_Count=="") {
+        alert('Tous les champs doivent être remplis.');
+        console.log("fffdsfd")
+        return false;
+    }
+
+    else if (isNaN(Price) || Price <= 0) {
+        alert('Le prix doit être un nombre positif.');
+        return false;
+    }
+
+    else if (isNaN(Rating_Count) || Rating_Count < 0 || Rating_Count > 10) {
+        alert('Le nombre de notes doit être entre 0 et 10');
+        return false;
+    }
+
+    else if (isNaN(Inventory_Count) || Inventory_Count < 0) {
+        alert('La quantité en stock doit être un nombre non négatif.');
+        return false;
+    }
+
+    else{
+        return true;
+    }
+    
+}
 function resetModal(){
     document.getElementById('ProductModalLabel').textContent="Ajouter un Nouveau Produit";
     document.getElementById('ProductModalAction').textContent="Ajouter";
