@@ -2,4 +2,3 @@
 <!ELEMENT Categories (Category+)>
 <!ELEMENT Category (Name)>
 <!ELEMENT Name (#PCDATA)>
-

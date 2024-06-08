@@ -154,43 +154,52 @@ document.getElementById('ProductModal').addEventListener('hide.bs.modal', functi
     resetModal()
 });
 async function getCategories(){
+    let data=[];
     await fetch('/categories')
         .then((res)=>res.json())
         .then((res)=>{
-            if(res.data.length>0){
-                document.getElementById('Categories').innerHTML="";
-                res.data.map((item)=>{
-                    document.getElementById('Categories').innerHTML+=`
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-header"></div>
-                            <div class="card-body">
-                                <h5 class="card-title my-5 text-center">${item.Name[0]}</h5>
-                                <div style="display: flex;align-items: center;justify-content: space-between;">
-                                    <a href="/products/category/electronics" class="btn btn-primary">voir Produits</a>
-                                    <button onclick="deleteCategory('${item.Name[0]}')" class="text-red border-0 bg-transparent" >
-                                        <img src="/icons/trash.svg" alt="SVG Image">
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                })
-            }
-            else{
-                document.getElementById('Categories').innerHTML="";
-                document.getElementById('Categories').innerHTML=`
-                    <div>Pas de Categories</div> 
-                `;
-            }
+            data= res.data;
         })
         .catch((e)=>{
             alert(e.message);
         })
+        
+    return data;    
 }
-document.addEventListener("DOMContentLoaded", function() {
+async function listCategories(data){
+    if(data.length>0){
+        document.getElementById('Categories').innerHTML="";
+        data.map((item)=>{
+            document.getElementById('Categories').innerHTML+=`
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <h5 class="card-title my-5 text-center">${item.Name[0]}</h5>
+                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                            <a href="/products/category/${item.Name[0]}" class="btn btn-primary">voir Produits</a>
+                            <button onclick="deleteCategory('${item.Name[0]}')" class="text-red border-0 bg-transparent" >
+                                <img src="/icons/trash.svg" alt="SVG Image">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        })
+    }
+    else{
+        document.getElementById('Categories').innerHTML="";
+        document.getElementById('Categories').innerHTML=`
+            <div>Pas de Categories</div> 
+        `;
+    }
+}
+document.addEventListener("DOMContentLoaded", async function() {
+    let categories=await getCategories();
+    
     fetchXMLData('/products.xml', function(xmlData) {
         drowTable(xmlData)
     });
-    getCategories();
+    
+    listCategories(categories)
     handleTabChange();
 });
