@@ -76,7 +76,6 @@ function editProduct(productId) {
             document.getElementById('product-rating-count').value = res.data.Rating_Count[0];
             document.getElementById('product-inventory-count').value = res.data.Inventory_Count[0];
 
-            // Show the modal
             var editProductModal = new bootstrap.Modal(document.getElementById('ProductModal'));
                 editProductModal.show();
         })
@@ -97,22 +96,21 @@ function saveProduct() {
         Inventory_Count: document.getElementById('product-inventory-count').value,
     };
     if(validateProductForm(product)){
-        // saveProductData(updatedProduct);
-        console.log(product)
+        if(document.getElementById('ProductModalAction').innerText=="Ajouter"){
+            addProduct(product);
+        }
+        else{
+            updateProduct(product)
+        }
         var editProductModal = bootstrap.Modal.getInstance(document.getElementById('ProductModal'));
         editProductModal.hide();
     }
-    
-
-    
 }
 
 function validateProductForm({id,Name,Price,Category,Brand,Rating_Count,Inventory_Count}) {
-    console.log("called")
 
     if (id=="" || Name=="" || Price=="" || Category=="" || Brand=="" || Rating_Count=="" || Inventory_Count=="") {
         alert('Tous les champs doivent être remplis.');
-        console.log("fffdsfd")
         return false;
     }
 
@@ -135,6 +133,36 @@ function validateProductForm({id,Name,Price,Category,Brand,Rating_Count,Inventor
         return true;
     }
     
+}
+async function addProduct(product){
+    const newProduct= {
+        $: { id:"produit"+product.id },
+        Name: [product.Name],
+        Price: [product.Price],
+        Category: [product.Category],
+        Brand: [product.Brand],
+        Rating_Count: [product.Rating_Count],
+        Inventory_Count: [product.Inventory_Count]
+    };
+    await fetch("/products",{
+        method:"Post",
+        body:JSON.stringify(newProduct),
+        headers: {
+            "Content-Type": "application/json"
+        },  
+    })
+    .then((res)=>res.json())
+    .then((res)=>{
+        alert(res.message)
+        window.location.href="/"
+    })
+    .catch((e)=>{
+        alert(e.message)
+        window.location.href="/"
+    })
+}
+function updateProduct(){
+    alert("update product")
 }
 function resetModal(){
     document.getElementById('ProductModalLabel').textContent="Ajouter un Nouveau Produit";

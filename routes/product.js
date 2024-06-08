@@ -69,5 +69,46 @@ router.get('/:id', (req, res) => {
         });
     });
 });
+router.post('/', async(req, res) => {
+    try{
+        let newProduct = req.body;
+        console.log(newProduct)
+        const filePath = path.join(__dirname, '../data/products.xml');
+        fs.readFile(filePath, (err, data) => {
+            if (err) res.status(500).json({
+                message:"une erreur se produit !"
+            });
+
+            xml2js.parseString(data, (err, result) => {
+                if (err) res.status(500).json({
+                    message:"une erreur se produit !"
+                });
+                
+                let products = result.Products.Product||[];
+                const productExists = products.some(product => product.$.id === newProduct.$.id);
+                if (productExists) {
+                    return res.status(400).json({ message: 'le produit est déja  exist !' });
+                }
+                products.push(newProduct);
+                result.Products.Product = products;
+                const builder = new xml2js.Builder();
+                const xml = builder.buildObject(result);
+
+                fs.writeFile(filePath, xml, (err) => {
+                    if (err) res.status(500).json({
+                        message:"une erreur se produit !"
+                    });
+                    res.status(200).json({
+                        message:"produit créé avec succès"
+                    });
+                });
+            });
+        });
+    }
+    catch(e){
+        res.status(500).json({ message: 'produit créé avec succès', error });
+    }
+    
+});
 
 module.exports = router;

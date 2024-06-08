@@ -24,4 +24,20 @@
     <Rating_Count>5</Rating_Count>
     <Inventory_Count>21</Inventory_Count>
   </Product>
+  <Product id="produit2004">
+    <Name>Hello</Name>
+    <Price>100</Price>
+    <Category>Electronics</Category>
+    <Brand>Fs</Brand>
+    <Rating_Count>2</Rating_Count>
+    <Inventory_Count>10</Inventory_Count>
+  </Product>
+  <Product id="pro">
+    <Name>202</Name>
+    <Price>10</Price>
+    <Category>Home Decor</Category>
+    <Brand>01</Brand>
+    <Rating_Count>2</Rating_Count>
+    <Inventory_Count>4</Inventory_Count>
+  </Product>
 </Products>
