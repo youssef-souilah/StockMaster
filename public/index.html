@@ -92,21 +92,21 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="product-id" class="col-form-label">ID du Produit:</label>
-                                <input type="text" class="form-control" id="product-id">
+                                <input type="text" class="form-control" id="product-id" required />
                             </div>
                             <div class="col">
                                 <label for="product-name" class="col-form-label">Nom:</label>
-                                <input type="text" class="form-control" id="product-name">
+                                <input type="text" class="form-control" id="product-name" required/>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="product-price" class="col-form-label">Prix:</label>
-                                <input type="number" class="form-control" id="product-price" step="0.01">
+                                <input type="number" class="form-control" id="product-price" step="0.01" required/>
                             </div>
                             <div class="col">
                                 <label for="product-category" class="col-form-label">Catégorie:</label>
-                                <select class="form-select" id="product-category">
+                                <select class="form-select" id="product-category" required >
                                     
                                 </select>
                             </div>
@@ -114,25 +114,26 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="product-brand" class="col-form-label">Marque:</label>
-                                <input type="text" class="form-control" id="product-brand">
+                                <input type="text" class="form-control" id="product-brand" required/>
                             </div>
                             <div class="col">
                                 <label for="product-rating-count" class="col-form-label">Nombre de Notes:</label>
-                                <input type="number" class="form-control" id="product-rating-count">
+                                <input type="number" class="form-control" id="product-rating-count" required />
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="product-inventory-count" class="col-form-label">Quantité en Stock:</label>
-                                <input type="number" class="form-control" id="product-inventory-count">
+                                <input type="number" class="form-control" id="product-inventory-count" required  />
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="resetModal()">Fermer</button>
+                            <button type="submit" class="btn btn-primary" id="ProductModalAction"  >Ajouter</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="resetModal()">Fermer</button>
-                    <button type="button" class="btn btn-primary" id="ProductModalAction" >Ajouter</button>
-                </div>
+                
             </div>
         </div>
     </div>

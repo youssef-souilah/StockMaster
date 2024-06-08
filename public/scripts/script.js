@@ -1,4 +1,7 @@
-
+document.getElementById('ProductModalAction').addEventListener('click',(e)=>{
+    e.preventDefault();
+    saveProduct()
+})
 
 function drowTable(xmlData){
     const parser = new DOMParser();
@@ -68,7 +71,6 @@ function editProduct(productId) {
         .then((res)=>{
             document.getElementById('ProductModalLabel').textContent="Modifier le produit";
             document.getElementById('ProductModalAction').textContent="Modifier";
-            document.getElementById('ProductModalAction').onclick= saveProduct;
             document.getElementById('product-id').value = res.data.$.id;
             document.getElementById('product-name').value = res.data.Name[0];
             document.getElementById('product-price').value = res.data.Price[0];
@@ -89,7 +91,7 @@ function editProduct(productId) {
 
 function saveProduct() {
     // Get the updated product data from the form
-    const updatedProduct = {
+    const product = {
         id: document.getElementById('product-id').value,
         Name: document.getElementById('product-name').value,
         Price: document.getElementById('product-price').value,
@@ -100,10 +102,11 @@ function saveProduct() {
     };
 
     // Save the updated product (this example assumes you have a function or a way to save the product data)
-    saveProductData(updatedProduct);
+    // saveProductData(updatedProduct);
+    console.log(product)
 
     // Hide the modal
-    var editProductModal = bootstrap.Modal.getInstance(document.getElementById('editProductModal'));
+    var editProductModal = bootstrap.Modal.getInstance(document.getElementById('ProductModal'));
     editProductModal.hide();
 }
 
@@ -193,13 +196,25 @@ async function listCategories(data){
         `;
     }
 }
+function populateSelectCategory(data){
+    if(data.length>0){
+        document.getElementById('product-category').innerHTML="";
+        document.getElementById('product-category').innerHTML=`
+            <option value="">---Selectionner---</option>
+        `;
+        data.map((item)=>{
+            document.getElementById('product-category').innerHTML+=`
+                <option value="${item.Name[0]}">${item.Name[0]}</option>
+            `;
+        });
+    }
+}
 document.addEventListener("DOMContentLoaded", async function() {
     let categories=await getCategories();
-    
+    populateSelectCategory(categories)
     fetchXMLData('/products.xml', function(xmlData) {
         drowTable(xmlData)
     });
-    
-    listCategories(categories)
+    listCategories(categories);
     handleTabChange();
 });
