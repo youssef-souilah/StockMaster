@@ -3,7 +3,7 @@
   <xsi:element name="Products">
     <xsi:complexType>
       <xsi:sequence>
-        <xsi:element name="Product" maxOccurs="unbounded">
+        <xsi:element name="Product" maxOccurs="unbounded" minOccurs="0">
           <xsi:complexType>
             <xsi:sequence>
               <xsi:element name="Name" type="xsi:string"/>
