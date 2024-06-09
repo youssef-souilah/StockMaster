@@ -286,7 +286,7 @@ async function listCategories(data){
         document.getElementById('Categories').innerHTML="";
         data.map((item)=>{
             document.getElementById('Categories').innerHTML+=`
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="min-width: 200px;">
                     <div class="card-header"></div>
                     <div class="card-body">
                         <h5 class="card-title my-5 text-center">${item.Name[0]}</h5>
