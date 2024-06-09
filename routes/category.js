@@ -82,9 +82,12 @@ router.post('/', async(req, res) => {
                 }
                 categories.push(newCategory);
                 result.Categories.Category = categories;
-                const builder = new xml2js.Builder();
-                const xml = builder.buildObject(result);
-
+                const builder = new xml2js.Builder({
+                    xmldec: { version: '1.0', encoding: 'UTF-8' },
+                    doctype: {'sysID': 'categories.dtd'}
+                });
+                
+                let xml = builder.buildObject(result);
                 fs.writeFile(filePath, xml, (err) => {
                     if (err) res.status(500).json({
                         message:"une erreur se produit !"

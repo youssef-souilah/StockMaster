@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Categories SYSTEM "categories.dtd">
 <Categories>
   <Category>
     <Name>Home Decor</Name>
@@ -8,5 +9,14 @@
   </Category>
   <Category>
     <Name>Kids</Name>
+  </Category>
+  <Category>
+    <Name>Men</Name>
+  </Category>
+  <Category>
+    <Name>Women</Name>
+  </Category>
+  <Category>
+    <Name>Summer</Name>
   </Category>
 </Categories>
