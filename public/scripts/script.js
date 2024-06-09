@@ -319,12 +319,105 @@ function populateSelectCategory(data){
         });
     }
 }
+
+
+
+function filterTable(xml,parser) {
+    const xmlDoc = parser.parseFromString(xml, "application/xml");
+    const idFilter = document.getElementById('search-id').value;
+    const nameFilter = document.getElementById('search-name').value;
+    const priceFilter = document.getElementById('search-price').value;
+    const categoryFilter = document.getElementById('search-category').value;
+    const brandFilter = document.getElementById('search-brand').value;
+    const ratingCountFilter = document.getElementById('search-rating-count').value;
+    const inventoryCountFilter = document.getElementById('search-inventory-count').value;
+
+    let xpath = "/Products/Product";
+    let conditions = [];
+
+    if (idFilter) conditions.push(`@id[contains(., '${idFilter}')]`);
+    if (nameFilter) conditions.push(`Name[contains(., '${nameFilter}')]`);
+    if (priceFilter) conditions.push(`Price[contains(., '${priceFilter}')]`);
+    if (categoryFilter) conditions.push(`Category[contains(., '${categoryFilter}')]`);
+    if (brandFilter) conditions.push(`Brand[contains(., '${brandFilter}')]`);
+    if (ratingCountFilter) conditions.push(`Rating_Count[contains(., '${ratingCountFilter}')]`);
+    if (inventoryCountFilter) conditions.push(`Inventory_Count[contains(., '${inventoryCountFilter}')]`);
+
+    if (conditions.length > 0) {
+        xpath += `[${conditions.join(' and ')}]`;
+    }
+
+    const result = xmlDoc.evaluate(xpath, xmlDoc, null, XPathResult.ANY_TYPE, null);
+    // console.log(result);
+    const tbody = document.getElementById('productTableBody');
+    tbody.innerHTML = '';
+
+    let node = result.iterateNext();
+    while (node) {
+        const id = node.getAttribute('id');
+        const name = node.getElementsByTagName('Name')[0].textContent;
+        const price = node.getElementsByTagName('Price')[0].textContent;
+        const category = node.getElementsByTagName('Category')[0].textContent;
+        const brand = node.getElementsByTagName('Brand')[0].textContent;
+        const ratingCount = node.getElementsByTagName('Rating_Count')[0].textContent;
+        const inventoryCount = node.getElementsByTagName('Inventory_Count')[0].textContent;
+
+        const row = `<tr>
+                        <td>${id}</td>
+                        <td>${name}</td>
+                        <td>${price}</td>
+                        <td>${category}</td>
+                        <td>${brand}</td>
+                        <td>${ratingCount}</td>
+                        <td>${inventoryCount}</td>
+                        <td>
+                            <button onclick="editProduct(${id})" class="text-blue border-0 bg-transparent" >
+                                <img src="/icons/pencil.svg" alt="SVG Image" />
+                            </button>
+                            <button onclick="deleteProduct(${id})" class="text-red border-0 bg-transparent" >
+                                <img src="/icons/trash.svg" alt="SVG Image" />
+                            </button>
+                        </td>
+                    </tr>`;
+        tbody.insertAdjacentHTML('beforeend', row);
+
+        node = result.iterateNext();
+    }
+}
 document.addEventListener("DOMContentLoaded", async function() {
+    const parser = new DOMParser();
+    let productsXML;
+    
     let categories=await getCategories();
     populateSelectCategory(categories)
     fetchXMLData('/products.xml', function(xmlData) {
-        drowTable(xmlData)
+        drowTable(xmlData);
+        productsXML=xmlData;
     });
     listCategories(categories);
     handleTabChange();
+    
+    document.getElementById('search-id').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-name').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-price').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-category').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-brand').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-rating-count').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-inventory-count').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    
+    
 });
