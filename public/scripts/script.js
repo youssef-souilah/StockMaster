@@ -1,5 +1,42 @@
-
 let selectedUpdatedProduct;
+document.addEventListener("DOMContentLoaded", async function() {
+    const parser = new DOMParser();
+    let productsXML;
+    
+    let categories=await getCategories();
+    populateSelectCategory(categories)
+    fetchXMLData('/products.xml', function(xmlData) {
+        drowTable(xmlData);
+        productsXML=xmlData;
+    });
+    listCategories(categories);
+    handleTabChange();
+    
+    document.getElementById('search-id').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-name').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-price').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-category').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-brand').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-rating-count').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    document.getElementById('search-inventory-count').addEventListener('input', (e)=>{
+        filterTable(productsXML,parser);
+    });
+    
+    
+});
+
 function drowTable(xmlData){
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlData, 'text/xml');
@@ -383,40 +420,3 @@ function filterTable(xml,parser) {
         node = result.iterateNext();
     }
 }
-document.addEventListener("DOMContentLoaded", async function() {
-    const parser = new DOMParser();
-    let productsXML;
-    
-    let categories=await getCategories();
-    populateSelectCategory(categories)
-    fetchXMLData('/products.xml', function(xmlData) {
-        drowTable(xmlData);
-        productsXML=xmlData;
-    });
-    listCategories(categories);
-    handleTabChange();
-    
-    document.getElementById('search-id').addEventListener('input', (e)=>{
-        filterTable(productsXML,parser);
-    });
-    document.getElementById('search-name').addEventListener('input', (e)=>{
-        filterTable(productsXML,parser);
-    });
-    document.getElementById('search-price').addEventListener('input', (e)=>{
-        filterTable(productsXML,parser);
-    });
-    document.getElementById('search-category').addEventListener('input', (e)=>{
-        filterTable(productsXML,parser);
-    });
-    document.getElementById('search-brand').addEventListener('input', (e)=>{
-        filterTable(productsXML,parser);
-    });
-    document.getElementById('search-rating-count').addEventListener('input', (e)=>{
-        filterTable(productsXML,parser);
-    });
-    document.getElementById('search-inventory-count').addEventListener('input', (e)=>{
-        filterTable(productsXML,parser);
-    });
-    
-    
-});
