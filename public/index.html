@@ -42,9 +42,9 @@
             </ul>
         </div>
 
-        <div id="table" class=" overflow-y-scroll" style="max-height : 400px;">
+        <div id="table" class=" overflow-y-scroll" style="max-height : 500px;">
             <table class="table">
-                <thead>
+                <thead class="sticky-top" style="z-index: 20;">
                     <tr>
                         <th scope="col">Product ID</th>
                         <th scope="col">Name</th>
@@ -54,6 +54,16 @@
                         <th scope="col">Rating Count</th>
                         <th scope="col">Inventory Count</th>
                         <th scope="col">Actions</th>
+                    </tr>
+                    <tr>
+                        <th><input type="text" class="form-control" id="search-id" placeholder="Search ID"></th>
+                        <th><input type="text" class="form-control" id="search-name" placeholder="Search Name"></th>
+                        <th><input type="text" class="form-control" id="search-price" placeholder="Search Price"></th>
+                        <th><input type="text" class="form-control" id="search-category" placeholder="Search Category"></th>
+                        <th><input type="text" class="form-control" id="search-brand" placeholder="Search Brand"></th>
+                        <th><input type="text" class="form-control" id="search-rating-count" placeholder="Search Rating Count"></th>
+                        <th><input type="text" class="form-control" id="search-inventory-count" placeholder="Search Inventory Count"></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="productTableBody">

@@ -23,7 +23,7 @@ function drowTable(xmlData){
             tableBody += `<td>${brand}</td>`;
             tableBody += `<td>${ratingCount}</td>`;
             tableBody += `<td>${InventoryCount}</td>`;
-            tableBody += `<td>
+            tableBody += `<td class="w-4">
                 <button onclick="editProduct('${productId}')" x-  data-bs-toggle="modal" data-bs-target="#addProductModal" class="text-blue border-0 bg-transparent" >
                     <img src="/icons/pencil.svg" alt="SVG Image" >
                 </button>

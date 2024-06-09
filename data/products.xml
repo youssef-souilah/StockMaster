@@ -24,4 +24,36 @@
     <Rating_Count>8</Rating_Count>
     <Inventory_Count>30</Inventory_Count>
   </Product>
+  <Product id="produit500">
+    <Name>T-shirt</Name>
+    <Price>200</Price>
+    <Category>Kids</Category>
+    <Brand>Primark</Brand>
+    <Rating_Count>8</Rating_Count>
+    <Inventory_Count>400</Inventory_Count>
+  </Product>
+  <Product id="produit501">
+    <Name>Shirt</Name>
+    <Price>300</Price>
+    <Category>Men</Category>
+    <Brand>Primark</Brand>
+    <Rating_Count>5</Rating_Count>
+    <Inventory_Count>100</Inventory_Count>
+  </Product>
+  <Product id="produit502">
+    <Name>Toy</Name>
+    <Price>500</Price>
+    <Category>Kids</Category>
+    <Brand>Geary</Brand>
+    <Rating_Count>9</Rating_Count>
+    <Inventory_Count>500</Inventory_Count>
+  </Product>
+  <Product id="produit504">
+    <Name>Laty</Name>
+    <Price>800</Price>
+    <Category>Summer</Category>
+    <Brand>SumMark</Brand>
+    <Rating_Count>6</Rating_Count>
+    <Inventory_Count>520</Inventory_Count>
+  </Product>
 </Products>
