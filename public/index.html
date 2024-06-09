@@ -46,23 +46,23 @@
             <table class="table">
                 <thead class="sticky-top" style="z-index: 20;">
                     <tr>
-                        <th scope="col">Product ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Rating Count</th>
-                        <th scope="col">Inventory Count</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Categorie</th>
+                        <th scope="col">Marque</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Stock</th>
                         <th scope="col" style="width: 100px;">Actions</th>
                     </tr>
                     <tr>
-                        <th><input type="text" class="form-control" id="search-id" placeholder="Search ID"></th>
-                        <th><input type="text" class="form-control" id="search-name" placeholder="Search Name"></th>
-                        <th><input type="text" class="form-control" id="search-price" placeholder="Search Price"></th>
-                        <th><input type="text" class="form-control" id="search-category" placeholder="Search Category"></th>
-                        <th><input type="text" class="form-control" id="search-brand" placeholder="Search Brand"></th>
-                        <th><input type="text" class="form-control" id="search-rating-count" placeholder="Search Rating Count"></th>
-                        <th><input type="text" class="form-control" id="search-inventory-count" placeholder="Search Inventory Count"></th>
+                        <th><input type="text" class="form-control" id="search-id" placeholder="Recherche ID"></th>
+                        <th><input type="text" class="form-control" id="search-name" placeholder="Recherche Nom"></th>
+                        <th><input type="text" class="form-control" id="search-price" placeholder="Recherche Prix"></th>
+                        <th><input type="text" class="form-control" id="search-category" placeholder="Recherche Categorie"></th>
+                        <th><input type="text" class="form-control" id="search-brand" placeholder="Recherche Marque"></th>
+                        <th><input type="text" class="form-control" id="search-rating-count" placeholder="Recherche Rating "></th>
+                        <th><input type="text" class="form-control" id="search-inventory-count" placeholder="Recherche Stock"></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -127,7 +127,7 @@
                                 <input type="text" class="form-control" id="product-brand" required/>
                             </div>
                             <div class="col">
-                                <label for="product-rating-count" class="col-form-label">Nombre de Notes:</label>
+                                <label for="product-rating-count" class="col-form-label">Rating:</label>
                                 <input type="number" class="form-control" id="product-rating-count" required />
                             </div>
                         </div>
@@ -153,7 +153,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel"> Ajouter une Nouvelle Catégory</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel"> Ajouter une Nouvelle Catégorie</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
