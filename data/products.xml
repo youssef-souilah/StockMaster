@@ -1,2 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="products.xsd"/>
+<Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="products.xsd">
+  <Product id="produit32132">
+    <Name>Prod01</Name>
+    <Price>23.20</Price>
+    <Category>Home Decor</Category>
+    <Brand>FD</Brand>
+    <Rating_Count>9</Rating_Count>
+    <Inventory_Count>200</Inventory_Count>
+  </Product>
+  <Product id="produit200">
+    <Name>Mobile</Name>
+    <Price>2300</Price>
+    <Category>Electronics</Category>
+    <Brand>Nokia</Brand>
+    <Rating_Count>6</Rating_Count>
+    <Inventory_Count>60</Inventory_Count>
+  </Product>
+  <Product id="produit300">
+    <Name>Smart watch</Name>
+    <Price>4500</Price>
+    <Category>Electronics</Category>
+    <Brand>Apple</Brand>
+    <Rating_Count>8</Rating_Count>
+    <Inventory_Count>30</Inventory_Count>
+  </Product>
+</Products>

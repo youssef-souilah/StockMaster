@@ -196,7 +196,32 @@ async function updateProduct(product){
         window.location.href="/"
     })
 }
-
+async function saveCategory(){
+    const category = {
+        Name: [document.getElementById('category-name').value],
+    };
+    if(category.Name!=""){
+        await fetch("/categories",{
+            method:"Post",
+            body:JSON.stringify(category),
+            headers: {
+                "Content-Type": "application/json"
+            },  
+        })
+        .then((res)=>res.json())
+        .then((res)=>{
+            alert(res.message)
+            window.location.href="/"
+        })
+        .catch((e)=>{
+            alert(e.message)
+            window.location.href="/"
+        })
+    }
+    else{
+        alert("Il faut remplire le champ de nom !")
+    }
+}
 function resetModal(){
     document.getElementById('ProductModalLabel').textContent="Ajouter un Nouveau Produit";
     document.getElementById('ProductModalAction').textContent="Ajouter";

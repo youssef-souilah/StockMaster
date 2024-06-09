@@ -75,8 +75,9 @@ router.post('/', async(req, res) => {
                 });
                 
                 let categories = result.Categories.Category||[];
-                const productExists = categories.some(product => product.Name[0] === newCategory.Name[0]);
-                if (productExists) {
+                const categoryExists = categories.some(category => category.Name[0] == newCategory.Name[0]);
+                console.log()
+                if (categoryExists) {
                     return res.status(400).json({ message: 'la category est déja  exist !' });
                 }
                 categories.push(newCategory);

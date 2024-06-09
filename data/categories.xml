@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Categories SYSTEM "categories.dtd">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Categories>
   <Category>
     <Name>Home Decor</Name>
   </Category>
   <Category>
     <Name>Electronics</Name>
+  </Category>
+  <Category>
+    <Name>Kids</Name>
   </Category>
 </Categories>
