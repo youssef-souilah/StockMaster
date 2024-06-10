@@ -1,0 +1,44 @@
+Réalisé par Youssef Sweileh
+
+Pour démarrer le projet :
+npm install 
+npm start  (pour démarrer l'application sur le port 3000)
+
+Introduction
+"Stock Master" est une mini application web  pour la gestion des stocks de produits. 
+Elle offre une gestion  des produits et des catégories grâce à l'utilisation de diverses 
+technologies XML et Node.js pour le backend. Les utilisateurs peuvent visualiser, ajouter, modifier 
+et supprimer des produits et des catégories, ainsi que filtrer et rechercher des produits à l'aide de 
+XSLT et XPath.
+
+Fonctionnalités Principales
+Tableau de Produits
+
+Affichage des produits avec les colonnes : ID, Nom, Prix, Catégorie, Marque, Rating, Stock, et Actions.
+Options de filtrage pour chaque colonne : Recherche ID, Recherche Nom, Recherche Prix, Recherche Catégorie, Recherche Marque, Recherche Rating, Recherche Stock.
+Actions disponibles pour chaque produit : Modification et Suppression.
+
+Filtrage et Tri des Produits
+
+Filtrage des produits par : rating, prix élevé, et bas prix en utilisant XSLT.
+Système de recherche intégrée pour filtrer les produits selon divers critères à l'aide de XPath.
+
+Gestion des Catégories
+
+Affichage des catégories de produits sous forme de cartes.
+Ajout de nouvelles catégories avec un bouton dédié.
+
+Manipulation XML
+
+Utilisation de DTD pour la définition de la structure du fichier XML des catégories.
+Utilisation de XSD pour la définition de la structure du fichier XML des produits.
+Stockage des données des produits et des catégories sous forme de fichiers XML.
+Utilisation de XSLT pour transformer et filtrer les produits par rating et prix (haut et bas).
+Utilisation de XPath pour effectuer des recherches sur chaque champ de produit.
+
+Gestion des Données
+
+Création, mise à jour et suppression des produits.
+Création de catégories.
+Listage des fichiers products.xml avec JavaScript.
+Parsing des fichiers XML avec le module xml2js dans Node.js.
